@@ -1,4 +1,4 @@
-﻿export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic";
 
 import Link from "next/link";
 import { getCurrentUser } from "@/lib/auth.js";
@@ -11,7 +11,7 @@ export const metadata = {
     title: "Saven",
     description:
       "Pesan dan kelola jokian tugas dengan rapi: QRIS dinamis, tracking real-time, dan notifikasi langsung.",
-    url: "https://Saven.app",
+    url: "/",
     siteName: "Saven",
     type: "website",
   },

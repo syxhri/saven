@@ -53,7 +53,9 @@ export async function GET(req, { params }) {
   const format = (url.searchParams.get("format") || "png").toLowerCase();
   const wantsJson = isTruthyParam(url.searchParams.get("json"));
 
-  const origin = process.env.APP_URL || `${url.protocol}//${url.host}`;
+  const origin =
+    process.env.APP_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : `${url.protocol}//${url.host}`);
   const orderCode = params.id;
 
   const receiptUrl = `${origin}/print/receipt/${orderCode}`;

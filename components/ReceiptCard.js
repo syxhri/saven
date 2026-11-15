@@ -1,4 +1,4 @@
-﻿import { forwardRef } from "react";
+import { forwardRef } from "react";
 
 const ReceiptCard = forwardRef(function ReceiptCard(
   { order, variant = "default", className = "", ...props },
@@ -19,6 +19,15 @@ const ReceiptCard = forwardRef(function ReceiptCard(
     variant === "plain"
       ? "bg-white text-slate-800"
       : "rounded-2xl border-2 border-slate-900 bg-white text-slate-800 shadow-neo dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:shadow-neo-dark";
+
+  const currentHost =
+    typeof window !== "undefined" && window.location?.host
+      ? window.location.host
+      : "saven.vercel.app";
+  const currentOrigin =
+    typeof window !== "undefined" && window.location?.origin
+      ? window.location.origin
+      : "/";
 
   return (
     <div
@@ -109,10 +118,10 @@ const ReceiptCard = forwardRef(function ReceiptCard(
         <p className="text-center leading-[1.4]">
           Struk ini dibuat secara otomatis dari{" "}
           <a
-            href="https://Saven.app/"
+            href={currentOrigin}
             className="text-primary-600 hover:text-primary-800 whitespace-nowrap"
           >
-            Saven.app
+            {currentHost}
           </a>.
         </p>
       </div>

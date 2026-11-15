@@ -1,5 +1,7 @@
-﻿export default function sitemap() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://Saven.app";
+import { getBaseUrl } from "@/lib/url.js";
+
+export default function sitemap() {
+  const baseUrl = getBaseUrl();
 
   return [
     {

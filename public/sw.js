@@ -1,4 +1,4 @@
-﻿// public/sw.js
+// public/sw.js
 // Service Worker untuk Web Push Notifications
 
 self.addEventListener("install", (event) => {

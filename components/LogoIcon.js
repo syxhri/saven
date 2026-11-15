@@ -1,33 +1,12 @@
-﻿"use client";
+"use client";
 
-import Image from "next/image";
+import SavenLogo, { SAVEN_LOGO_FILES } from "./SavenLogo";
 
-const LOGO_SOURCES = {
-  normal: "/images/logo-saven.svg",
-  white: "/images/logo-saven-white.svg",
-  flat: "/images/logo-saven-flat.svg",
-  flatWhite: "/images/logo-saven-flat-white.svg",
-};
-
-export default function LogoIcon({
-  variant = "normal",
-  size = 32,
-  className = "",
-  alt = "Logo Saven",
-  ...rest
-}) {
-  const src = LOGO_SOURCES[variant] ?? LOGO_SOURCES.normal;
-
-  return (
-    <Image
-      src={src}
-      alt={alt}
-      width={size}
-      height={size}
-      className={className}
-      {...rest}
-    />
-  );
+/**
+ * Komponen LogoIcon kompatibel yang meneruskan ke SavenLogo.
+ */
+export default function LogoIcon(props) {
+  return <SavenLogo {...props} />;
 }
 
-export { LogoIcon as SavenLogo };
+export { SavenLogo, SAVEN_LOGO_FILES };

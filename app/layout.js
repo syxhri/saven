@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 import Navbar from "@/components/Navbar";
@@ -7,10 +7,12 @@ import MissingWhatsappDialog from "@/components/MissingWhatsappDialog";
 import EscHandler from "@/components/EscHandler";
 import { getCurrentUser } from "@/lib/auth.js";
 import { ThemeProvider } from "./ThemeProvider";
+import { getBaseUrl } from "@/lib/url.js";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
+  metadataBase: new URL(getBaseUrl()),
   title: "Saven - Solusi Joki Tugas Cepat & Terpercaya",
   description: "Platform joki tugas modern, cepat, dan transparan. Pantau tugasmu langsung tanpa ribet.",
   icons: {

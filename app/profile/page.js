@@ -1,4 +1,4 @@
-﻿export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic";
 
 import { requireAuth } from "@/lib/auth.js";
 import ProfileClient from "./profileClient";
