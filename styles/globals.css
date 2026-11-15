@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#FAF9F5] text-slate-900 dark:bg-[#0B0F19] dark:text-slate-100 antialiased selection:bg-primary-200 dark:selection:bg-primary-900 selection:text-primary-900 dark:selection:text-primary-100;
+  }
+}
+
+@layer components {
+  /* Playful Neobrutalism buttons */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2.5 rounded-xl font-bold transition-all duration-150 border-2 border-slate-900 dark:border-slate-700 select-none cursor-pointer text-sm;
+  }
+  .btn-primary {
+    @apply bg-primary-600 text-white shadow-neo dark:shadow-neo-dark hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-neo-md dark:hover:shadow-neo-dark-md active:translate-x-0.5 active:translate-y-0.5 active:shadow-neo-sm hover:bg-primary-500;
+  }
+  .btn-secondary {
+    @apply bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 shadow-neo dark:shadow-neo-dark hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-neo-md dark:hover:shadow-neo-dark-md active:translate-x-0.5 active:translate-y-0.5 active:shadow-neo-sm hover:bg-slate-50 dark:hover:bg-slate-700;
+  }
+  .btn-danger {
+    @apply bg-rose-500 text-white shadow-neo dark:shadow-neo-dark hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-neo-md dark:hover:shadow-neo-dark-md active:translate-x-0.5 active:translate-y-0.5 active:shadow-neo-sm hover:bg-rose-600;
+  }
+  .input {
+    @apply w-full px-3.5 py-2.5 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 border-2 border-slate-900 dark:border-slate-700 rounded-xl font-medium shadow-neo-sm dark:shadow-neo-dark-sm focus:outline-none focus:border-primary-600 focus:shadow-neo-primary dark:focus:shadow-neo-dark-md transition-all;
+  }
+  .label {
+    @apply block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5;
+  }
+
+  /* Soft Neobrutalism cards & pills */
+  .neo-card {
+    @apply rounded-2xl border-2 border-slate-900 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-neo dark:shadow-neo-dark;
+  }
+  .neo-card-interactive {
+    @apply rounded-2xl border-2 border-slate-900 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-neo dark:shadow-neo-dark transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-neo-md dark:hover:shadow-neo-dark-md;
+  }
+  .neo-badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full border-2 border-slate-900 dark:border-slate-700 text-xs font-bold shadow-neo-sm dark:shadow-neo-dark-sm;
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  .animate-fade-in-up {
+    animation: fade-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}

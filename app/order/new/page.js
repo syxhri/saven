@@ -1,0 +1,23 @@
+﻿export const dynamic = "force-dynamic";
+
+import { requireAuth } from "@/lib/auth.js";
+import OrderForm from "@/components/OrderForm";
+
+export const metadata = {
+  title: "Saven - Buat Orderan",
+  description: "Tambah orderan joki",
+};
+
+export default async function NewOrderPage({ searchParams }) {
+  await requireAuth();
+  const category = searchParams?.category || null;
+  return (
+    <div className="container mx-auto px-4 py-8 max-w-4xl">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-gray-900">Buat Orderan Baru</h1>
+        <p className="text-gray-600">Isi detail orderan joki tugas</p>
+      </div>
+      <OrderForm data={{ category, order: null }} />
+    </div>
+  );
+}
