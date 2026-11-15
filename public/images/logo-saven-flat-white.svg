@@ -1,18 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
-  <!-- Minimalist Flat S Emblem for Dark Backgrounds -->
-  <rect x="16" y="16" width="88" height="88" rx="24" fill="#FFFFFF"/>
-  
-  <path d="M74 36 C74 29, 46 27, 40 37 C34 47, 70 48, 68 64 C66 78, 36 77, 36 69" 
-        stroke="#0F172A" 
-        stroke-width="11" 
-        stroke-linecap="round" 
-        stroke-linejoin="round"/>
-
-  <path d="M49 63 L57 71 L75 53" 
-        stroke="#059669" 
-        stroke-width="4.5" 
-        stroke-linecap="round" 
-        stroke-linejoin="round"/>
-
-  <circle cx="78" cy="30" r="5" fill="#F59E0B" />
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(-1 1)">
+    <path
+      d="M42 18 H27 a7 7 0 0 0 0 14 h10 a7 7 0 0 1 0 14 H21"
+      fill="none"
+      stroke="#FFFFFF"
+      stroke-width="4.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <line
+      x1="37" y1="32"
+      x2="46" y2="23"
+      stroke="#FFFFFF"
+      stroke-width="4.5"
+      stroke-linecap="round"
+    />
+    <circle cx="37" cy="32" r="4" fill="#FACC15"/>
+  </g>
 </svg>

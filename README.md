@@ -79,10 +79,12 @@ Saven sudah dioptimalkan dan siap 100% untuk langsung dideploy melalui website [
    - Tunggu proses build selesai (~1-2 menit).
    - Website Saven kamu langsung live dan siap digunakan!
 
-> 💡 **Fitur Vercel Cron Otomatis**:  
-> File `vercel.json` telah dikonfigurasi otomatis untuk menjalankan tugas cron berkala:
-> - `/api/cron/cleanup-files`: Membersihkan file unduhan kedaluwarsa setiap 5 menit.
-> - `/api/cron/payment-reminder`: Mengirim notifikasi pengingat pembayaran setiap 30 menit.
+> 💡 **Fitur Vercel Cron Otomatis (Kompatibel Vercel Hobby Plan)**:  
+> File `vercel.json` telah dikonfigurasi mengikuti limitasi **Vercel Hobby Plan** (maksimal 1 kali eksekusi per hari per cron job):
+> - `/api/cron/cleanup-files`: Membersihkan file unduhan kedaluwarsa setiap hari (`0 2 * * *` - 02:00 UTC).
+> - `/api/cron/payment-reminder`: Mengirim notifikasi pengingat pembayaran setiap hari (`0 10 * * *` - 10:00 UTC).
+> 
+> *Catatan: Jika kamu membutuhkan interval lebih sering (misal tiap 5 atau 30 menit) di Vercel Hobby, gunakan layanan gratis seperti [cron-job.org](https://cron-job.org) atau GitHub Actions untuk menembak endpoint `/api/cron/*` dengan header `Authorization: Bearer <CRON_SECRET>`.*
 
 ---
 
