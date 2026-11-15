@@ -16,11 +16,10 @@ export const SAVEN_LOGO_FILES = {
 
 /**
  * Komponen khusus SavenLogo.
- * Merender vektor SVG inline secara langsung (zero latency, zero layout shift)
- * dengan opsi fallback ke file .svg jika asImage/fallback aktif.
+ * Merender monogram vektor SVG Saven secara inline langsung:
+ * Desain sangat simpel, elegan, modern, dan minimalis (S-stroke fluid + accent spark dot).
  *
- * Gaya flat adalah 100% transparan tanpa background (hanya logo utama),
- * simpel dan elegan seperti logo Jokiwi namun dengan tema identitas Saven (S + V monogram).
+ * Gaya flat adalah 100% transparan tanpa background (hanya logo utama).
  *
  * Props:
  * - variant / style: "flat" | "normal" | "white" | "flatWhite" | "saven" | "saven-flat" (default: "flat")
@@ -89,24 +88,15 @@ export default function SavenLogo({
           aria-label={alt}
           {...props}
         >
-          <g transform="translate(-1 1)">
+          <g transform="translate(0 -1)">
+            <circle cx="44" cy="20" r="4" fill="#F59E0B" />
             <path
-              d="M42 18 H27 a7 7 0 0 0 0 14 h10 a7 7 0 0 1 0 14 H21"
+              d="M36 20 H27 C22.5 20 19 23.5 19 28 C19 32.5 22.5 35.5 27 35.5 H37 C41.5 35.5 45 38.5 45 43 C45 47.5 41.5 51 37 51 H22"
               stroke="#4F46E5"
               strokeWidth="4.5"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-            <line
-              x1="37"
-              y1="32"
-              x2="46"
-              y2="23"
-              stroke="#4F46E5"
-              strokeWidth="4.5"
-              strokeLinecap="round"
-            />
-            <circle cx="37" cy="32" r="4" fill="#F59E0B" />
           </g>
         </svg>
       );
@@ -125,24 +115,15 @@ export default function SavenLogo({
           aria-label={alt}
           {...props}
         >
-          <g transform="translate(-1 1)">
+          <g transform="translate(0 -1)">
+            <circle cx="44" cy="20" r="4" fill="#FACC15" />
             <path
-              d="M42 18 H27 a7 7 0 0 0 0 14 h10 a7 7 0 0 1 0 14 H21"
+              d="M36 20 H27 C22.5 20 19 23.5 19 28 C19 32.5 22.5 35.5 27 35.5 H37 C41.5 35.5 45 38.5 45 43 C45 47.5 41.5 51 37 51 H22"
               stroke="#FFFFFF"
               strokeWidth="4.5"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-            <line
-              x1="37"
-              y1="32"
-              x2="46"
-              y2="23"
-              stroke="#FFFFFF"
-              strokeWidth="4.5"
-              strokeLinecap="round"
-            />
-            <circle cx="37" cy="32" r="4" fill="#FACC15" />
           </g>
         </svg>
       );
@@ -161,28 +142,19 @@ export default function SavenLogo({
         aria-label={alt}
         {...props}
       >
-        <g transform="translate(-1 1)">
+        <g transform="translate(0 -1)">
+          <circle
+            cx="44"
+            cy="20"
+            r="4"
+            className="fill-amber-500 dark:fill-yellow-400 transition-colors"
+          />
           <path
-            d="M42 18 H27 a7 7 0 0 0 0 14 h10 a7 7 0 0 1 0 14 H21"
+            d="M36 20 H27 C22.5 20 19 23.5 19 28 C19 32.5 22.5 35.5 27 35.5 H37 C41.5 35.5 45 38.5 45 43 C45 47.5 41.5 51 37 51 H22"
             className="stroke-primary-600 dark:stroke-white transition-colors"
             strokeWidth="4.5"
             strokeLinecap="round"
             strokeLinejoin="round"
-          />
-          <line
-            x1="37"
-            y1="32"
-            x2="46"
-            y2="23"
-            className="stroke-primary-600 dark:stroke-white transition-colors"
-            strokeWidth="4.5"
-            strokeLinecap="round"
-          />
-          <circle
-            cx="37"
-            cy="32"
-            r="4"
-            className="fill-amber-500 dark:fill-yellow-400 transition-colors"
           />
         </g>
       </svg>
@@ -220,28 +192,19 @@ export default function SavenLogo({
         fill={isWhiteBadge ? "#FFFFFF" : "url(#savenGradInline)"}
       />
 
-      <g transform="translate(-1 1)">
+      <g transform="translate(0 -1)">
+        <circle
+          cx="44"
+          cy="20"
+          r="4"
+          fill={isWhiteBadge ? "#F59E0B" : "#FACC15"}
+        />
         <path
-          d="M42 18 H27 a7 7 0 0 0 0 14 h10 a7 7 0 0 1 0 14 H21"
+          d="M36 20 H27 C22.5 20 19 23.5 19 28 C19 32.5 22.5 35.5 27 35.5 H37 C41.5 35.5 45 38.5 45 43 C45 47.5 41.5 51 37 51 H22"
           stroke={isWhiteBadge ? "#4F46E5" : "#FFFFFF"}
           strokeWidth="4.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-        />
-        <line
-          x1="37"
-          y1="32"
-          x2="46"
-          y2="23"
-          stroke={isWhiteBadge ? "#4F46E5" : "#FFFFFF"}
-          strokeWidth="4.5"
-          strokeLinecap="round"
-        />
-        <circle
-          cx="37"
-          cy="32"
-          r="4"
-          fill={isWhiteBadge ? "#F59E0B" : "#FACC15"}
         />
       </g>
     </svg>

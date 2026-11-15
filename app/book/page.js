@@ -182,25 +182,71 @@ export default function BookPage() {
   const selectedJoki = jokiList.find((j) => j.userCode === form.joki_user_code);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-sky-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 py-10 px-4">
-      <div className="mx-auto max-w-lg">
-        {/* Header */}
-        <div className="mb-8 text-center">
-          <span className="inline-flex items-center gap-2 rounded-full bg-primary-100 dark:bg-primary-900/40 px-3 py-1 text-xs font-semibold text-primary-700 dark:text-primary-300 mb-3">
-            Joki Tugas Terpercaya
-          </span>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-50 mb-2">
-            Pesan Joki Sekarang
-          </h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            Isi form di bawah dan penjoki akan segera menghubungimu.
-          </p>
+    <div className="py-8 sm:py-12 px-4 max-w-5xl mx-auto space-y-10">
+      <div className="grid gap-8 lg:grid-cols-12 items-start">
+        {/* Left Column: Guiding Info & Trust */}
+        <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-20">
+          <div className="inline-flex items-center gap-2 rounded-full border-2 border-slate-900 dark:border-slate-700 bg-amber-300 dark:bg-amber-400 px-3.5 py-1 text-xs font-black uppercase text-slate-950 shadow-neo-sm">
+            ⚡ Pesan Joki Tanpa Akun
+          </div>
+
+          <div className="space-y-2">
+            <h1 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white leading-tight">
+              Order Tugasmu, Pantau Progresnya.
+            </h1>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-medium leading-relaxed">
+              Cukup lengkapi form di samping. Penjoki akan segera menentukan harga &amp; estimasi waktu, lalu kamu bisa langsung pantau di link tracking unik milikmu.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <div className="rounded-2xl border-2 border-slate-900 dark:border-slate-700 bg-white dark:bg-slate-900 p-4 shadow-neo-sm space-y-1">
+              <p className="text-xs font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                <span>🛡️</span> Kerahasiaan 100% Terjaga
+              </p>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                Data &amp; berkas tugas kamu tidak dipublikasikan ke publik. Hanya kamu dan penjoki yang dapat mengaksesnya.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border-2 border-slate-900 dark:border-slate-700 bg-white dark:bg-slate-900 p-4 shadow-neo-sm space-y-1">
+              <p className="text-xs font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                <span>💳</span> QRIS Dinamis Otomatis
+              </p>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                Setelah deal harga, scan QRIS untuk bayar dari semua bank &amp; e-wallet (BCA, Mandiri, GoPay, Dana, dll).
+              </p>
+            </div>
+
+            <div className="rounded-2xl border-2 border-slate-900 dark:border-slate-700 bg-white dark:bg-slate-900 p-4 shadow-neo-sm space-y-1">
+              <p className="text-xs font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                <span>⚡</span> Tracking &amp; Struk Digital
+              </p>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                Kamu akan otomatis mendapatkan link tracking pesanan serta struk digital resmi yang bisa diunduh.
+              </p>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border-2 border-slate-900 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/60 p-4 space-y-2">
+            <p className="text-xs font-bold text-slate-700 dark:text-slate-300">Pernah order sebelumnya?</p>
+            <div className="flex gap-2 flex-wrap">
+              <Link href="/track" className="btn btn-secondary text-xs py-1.5 px-3">
+                Lacak Pesanan
+              </Link>
+              <Link href="/my-orders" className="btn btn-secondary text-xs py-1.5 px-3">
+                Riwayat Order Saya
+              </Link>
+            </div>
+          </div>
         </div>
 
-        <form
-          onSubmit={handleSubmit}
-          className="rounded-2xl bg-white dark:bg-slate-900 shadow-neo dark:shadow-neo-dark border-2 border-slate-900 dark:border-slate-700 p-6 sm:p-8 space-y-6"
-        >
+        {/* Right Column: The Order Form */}
+        <div className="lg:col-span-7">
+          <form
+            onSubmit={handleSubmit}
+            className="rounded-3xl bg-white dark:bg-slate-900 shadow-neo-md dark:shadow-neo-dark-md border-3 border-slate-900 dark:border-slate-700 p-6 sm:p-8 space-y-6"
+          >
           {error && (
             <div className="rounded-xl bg-rose-50 dark:bg-rose-950/40 border-2 border-rose-500 text-rose-900 dark:text-rose-200 p-3.5 text-sm font-semibold shadow-neo-sm">
               {error}
@@ -461,19 +507,8 @@ export default function BookPage() {
             {submitting ? "Mengirim pesanan…" : "Kirim Order"}
           </button>
         </form>
-
-        <div className="mt-6 rounded-2xl border-2 border-slate-900 dark:border-slate-700 bg-white dark:bg-slate-900 p-5 space-y-3 shadow-neo dark:shadow-neo-dark">
-          <p className="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">Sudah pernah order sebelumnya?</p>
-          <div className="flex gap-2.5 flex-wrap">
-            <Link href="/track" className="btn btn-primary text-xs">
-              Cek Status Order
-            </Link>
-            <Link href="/my-orders" className="btn btn-secondary text-xs">
-              Riwayat Order Saya
-            </Link>
-          </div>
-        </div>
       </div>
     </div>
-  );
+  </div>
+);
 }
