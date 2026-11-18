@@ -2,7 +2,7 @@ export const runtime = "nodejs";
 
 import { NextResponse } from "next/server";
 import { findOrderByCode, markFileDownloaded } from "@/lib/db.js";
-import { downloadFile } from "@/lib/storage.js";
+import { downloadFile, getMimeType } from "@/lib/storage.js";
 import { apiLimiter, getClientIp } from "@/lib/client.js";
 
 /**
@@ -60,15 +60,18 @@ export async function GET(request, { params }) {
       console.error("[Download] markFileDownloaded error:", err)
     );
 
-    const filename = order.original_filename || "hasil.zip";
+    const filename = order.original_filename || order.storage_path.split("/").pop() || "hasil";
+    const resolvedContentType = getMimeType(filename, contentType);
     const safeFilename = encodeURIComponent(filename);
+    const cleanAsciiFilename = filename.replace(/[^a-zA-Z0-9._-]/g, "_");
 
     return new NextResponse(buffer, {
       status: 200,
       headers: {
-        "Content-Type": contentType,
-        "Content-Disposition": `attachment; filename="${safeFilename}"; filename*=UTF-8''${safeFilename}`,
+        "Content-Type": resolvedContentType,
+        "Content-Disposition": `attachment; filename="${cleanAsciiFilename}"; filename*=UTF-8''${safeFilename}`,
         "Content-Length": String(buffer.byteLength),
+        "Access-Control-Expose-Headers": "Content-Disposition",
         "Cache-Control": "no-store",
       },
     });

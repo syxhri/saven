@@ -252,7 +252,9 @@ export default function TrackOrderPage() {
       const blob = await res.blob();
       const contentDisposition = res.headers.get("content-disposition") || "";
       const match = contentDisposition.match(/filename\*?=(?:UTF-8'')?["']?([^"';]+)/i);
-      const filename = match?.[1] ? decodeURIComponent(match[1]) : order?.taskName?.replace(/[^a-zA-Z0-9]/g, "_") || "hasil";
+      const filename = match?.[1]
+        ? decodeURIComponent(match[1])
+        : order?.fileName || order?.taskName?.replace(/[^a-zA-Z0-9]/g, "_") || "hasil";
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a"); a.href = url; a.download = filename;
       document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
@@ -592,6 +594,17 @@ export default function TrackOrderPage() {
                     </div>
                   ) : (
                     <div className="space-y-2">
+                      {order.fileName && (
+                        <div className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border-2 border-slate-900/10 dark:border-slate-700 text-xs">
+                          <span className="text-base">📁</span>
+                          <div className="truncate flex-1">
+                            <p className="font-bold text-slate-800 dark:text-slate-200 truncate">{order.fileName}</p>
+                            <p className="text-[10px] text-slate-500 dark:text-slate-400">
+                              {order.fileName.toLowerCase().endsWith(".psd") ? "Format Adobe Photoshop (.psd)" : "Berkas Hasil Tugas"}
+                            </p>
+                          </div>
+                        </div>
+                      )}
                       {downloadError && (
                         <div className="rounded-xl bg-rose-50 dark:bg-rose-950/40 border-2 border-rose-500 p-2.5 text-xs text-rose-800 dark:text-rose-200 font-bold">
                           {downloadError}

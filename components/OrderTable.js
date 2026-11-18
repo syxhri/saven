@@ -867,11 +867,12 @@ export default function OrderTable({
 
               {uploadModal.tab === "file" ? (
                 <div className="space-y-3">
-                  <p className="text-xs text-gray-500">
-                    Pilih file hasil pekerjaan dari perangkat kamu (Maksimal 50 MB di Supabase Storage).
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    Pilih file hasil pekerjaan dari perangkat kamu (Maksimal 50 MB. Mendukung Photoshop <strong>.psd</strong>, dokumen PDF/Word, gambar, arsip ZIP/RAR, dll).
                   </p>
                   <input
                     type="file"
+                    accept=".psd,.psb,.ai,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip,.rar,.7z,image/*"
                     disabled={uploadModal.loading}
                     onChange={(e) => {
                       const f = e.target.files?.[0];
@@ -895,8 +896,8 @@ export default function OrderTable({
                 </div>
               ) : (
                 <form onSubmit={submitExternalLinkUpload} className="space-y-3">
-                  <p className="text-xs text-gray-500">
-                    Jika file hasil pekerjaan <strong>lebih besar dari 50 MB</strong> (misal file ZIP, project video, dll), upload ke <strong>Google Drive / Mega / Dropbox</strong> lalu tempel link nya di bawah ini:
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    Jika file hasil pekerjaan <strong>lebih besar dari 50 MB</strong> (misal file PSD/AI resolusi tinggi, project video, arsip ZIP besar, dll), upload ke <strong>Google Drive / Mega / Dropbox</strong> lalu tempel link nya di bawah ini:
                   </p>
                   <div>
                     <label className="label">Link External (URL) *</label>

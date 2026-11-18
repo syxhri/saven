@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { AUTH_COOKIE_NAME, verifyToken } from "@/lib/auth.js";
 import { findOrder, setOrderFile, setOrderExternalLink } from "@/lib/db.js";
-import { uploadFile, deleteFile, validateFile, sanitizeFilename } from "@/lib/storage.js";
+import { uploadFile, deleteFile, validateFile, sanitizeFilename, getMimeType } from "@/lib/storage.js";
 import { notifyCustomer } from "@/lib/notify.js";
 import { apiLimiter, getClientIp } from "@/lib/client.js";
 
@@ -101,7 +101,8 @@ async function handleUpload(request, params, isReupload = false) {
     }
 
     const filename = file.name || "hasil";
-    const mimetype = file.type || "application/octet-stream";
+    const rawMimetype = file.type || "application/octet-stream";
+    const mimetype = getMimeType(filename, rawMimetype);
     const sizeBytes = file.size;
 
     const validation = validateFile(filename, mimetype, sizeBytes);

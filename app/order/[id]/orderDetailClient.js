@@ -465,6 +465,37 @@ export default function OrderDetailClient({ order: initialOrder }) {
                 </p>
               </div>
             )}
+
+            {(order.storage_path || order.external_link) && (
+              <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
+                <span className="text-xs text-gray-400 block mb-1">Hasil Pekerjaan Terupload</span>
+                {order.storage_path ? (
+                  <div className="flex items-center gap-2 p-2.5 rounded-xl bg-primary-50 dark:bg-primary-950/30 border border-primary-200 dark:border-primary-800 text-xs">
+                    <span className="text-base">📁</span>
+                    <div className="truncate flex-1">
+                      <p className="font-semibold text-primary-900 dark:text-primary-200 truncate">
+                        {order.original_filename || "File Terupload"}
+                      </p>
+                      <p className="text-[10px] text-primary-700/80 dark:text-primary-400">
+                        {order.original_filename?.toLowerCase().endsWith(".psd") ? "Format Adobe Photoshop (.psd)" : "Tersimpan di Cloud Storage"}
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2 p-2.5 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 text-xs">
+                    <span className="text-base">🔗</span>
+                    <a
+                      href={order.external_link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-semibold text-blue-700 dark:text-blue-300 hover:underline truncate"
+                    >
+                      {order.external_link}
+                    </a>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
@@ -642,15 +673,25 @@ export default function OrderDetailClient({ order: initialOrder }) {
               {uploadModal.error && <div className="rounded-xl bg-red-50 text-xs text-red-700 p-3">{uploadModal.error}</div>}
               {uploadModal.tab === "file" ? (
                 <div className="space-y-3">
-                  <p className="text-xs text-gray-500">Pilih file hasil pekerjaan (Maksimal 50 MB di Supabase Storage).</p>
-                  <input type="file" disabled={uploadingFile} onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFileUpload(f, uploadModal.isReupload); e.target.value = ""; }} className="block w-full text-xs text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-primary-50 file:text-primary-700" />
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    Pilih file hasil pekerjaan (Maksimal 50 MB. Mendukung Photoshop <strong>.psd</strong>, dokumen, gambar, arsip ZIP/RAR, dll).
+                  </p>
+                  <input
+                    type="file"
+                    accept=".psd,.psb,.ai,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip,.rar,.7z,image/*"
+                    disabled={uploadingFile}
+                    onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFileUpload(f, uploadModal.isReupload); e.target.value = ""; }}
+                    className="block w-full text-xs text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-primary-50 file:text-primary-700"
+                  />
                   <div className="flex justify-end pt-2">
                     <button type="button" onClick={() => setUploadModal({ open: false, isReupload: false, tab: "file", linkInput: "", loading: false, error: "" })} className="btn btn-secondary text-xs">Batal</button>
                   </div>
                 </div>
               ) : (
                 <form onSubmit={submitExternalLink} className="space-y-3">
-                  <p className="text-xs text-gray-500">Tempel link Google Drive / Mega / Cloud Storage jika file &gt; 50 MB:</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    Tempel link Google Drive / Mega / Cloud Storage jika file &gt; 50 MB (misal file PSD/AI resolusi tinggi, video, ZIP besar):
+                  </p>
                   <input type="url" required placeholder="https://drive.google.com/file/d/..." value={uploadModal.linkInput} onChange={(e) => setUploadModal((m) => ({ ...m, linkInput: e.target.value }))} className="input text-xs" autoFocus />
                   <div className="flex gap-2 pt-1">
                     <button type="submit" disabled={uploadModal.loading} className="btn btn-primary flex-1 text-xs">{uploadModal.loading ? "Menyimpan…" : "Simpan Link & Kirim Notif"}</button>

@@ -43,6 +43,7 @@ export async function GET(request, { params }) {
       isPaid: order.is_paid,
       isDone: order.is_done,
       hasFile: Boolean(order.storage_path),
+      fileName: order.is_paid ? (order.original_filename || null) : null,
       fileAvailable: Boolean(order.storage_path) && !order.file_delete_at, // false jika sudah dijadwalkan hapus
       hasExternalLink: Boolean(order.external_link),
       // Link external hanya ditampilkan jika SUDAH LUNAS
